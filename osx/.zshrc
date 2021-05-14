@@ -126,13 +126,16 @@ alias twork="reset && task project:work list"
 alias ttodo="reset && task project:todo list"
 alias tn="reset && task"
 
-export GOPATH="/Users/denesh/Documents/learning/go/"
-export PATH="/Users/denesh/.asdf/shims:/Users/denesh/.asdf/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin"
+alias gitshowfiles='git show --pretty="" --name-only HEAD'
+alias gitloggraph="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias gitloggraph2="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all"
 
-if [[ $TMUX ]]; then
-  source ~/.bash_profile
-  #export PATH="/Users/denesh/.asdf/shims:/Users/denesh/.asdf/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin"
-fi
+alias gotopsqlpid="cd /usr/local/var/postgres"
+
+alias weather="curl wttr.in/london"
+
+export GOPATH="/Users/denesh/Documents/learning/go/"
+export PATH="/Users/denesh/.asdf/shims:/Users/denesh/.asdf/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOPATH/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 echo "PATH is $PATH"
 
@@ -143,3 +146,7 @@ stty start undef stop undef
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 #export PATH="$PATH:$HOME/.rvm/bin"
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=3'
+
+
+export TDLIB_PATH="/usr/local/Cellar/tdlib/1.7.0/lib/libtdjson.dylib"

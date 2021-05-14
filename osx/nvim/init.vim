@@ -44,7 +44,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'gabesoft/vim-ags'
 Plug 'jgdavey/tslime.vim'
 Plug 'matze/vim-move'
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'schickling/vim-bufonly'
 Plug 'scrooloose/nerdcommenter'
@@ -54,10 +54,8 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'itchyny/lightline.vim'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 
 " ==== OTHER TOOLS
 "Plug 'ervandew/supertab'
@@ -69,8 +67,15 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'majutsushi/tagbar'
 
 " ==== Trying out
-Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'jalvesaq/vimcmdline'
+Plug 'mattn/emmet-vim'
+Plug 'n0v1c3/vira', { 'do': './install.sh' }
+Plug 'itchyny/calendar.vim'
+Plug 'rickhowe/spotdiff.vim'
+Plug 'ruby-formatter/rufo-vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'junegunn/limelight.vim'
+Plug 'leafOfTree/vim-vue-plugin'
 
 " ==== ELIXIR
 Plug 'slashmili/alchemist.vim'
@@ -85,27 +90,26 @@ Plug 'thoughtbot/vim-rspec'
 "Plug 'jodosha/vim-godebug'
 
 " ==== MUSIC
-Plug 'supercollider/scvim'
-Plug 'munshkr/vim-tidal'
+"Plug 'supercollider/scvim'
+"Plug 'munshkr/vim-tidal'
 
 " ==== COLOR SCHEMES
-Plug 'whatyouhide/vim-gotham'
-Plug 'junegunn/seoul256.vim'
-Plug 'kocakosm/hilal'
-Plug 'arcticicestudio/nord-vim'
-Plug 'kamwitsta/nordisk'
 Plug 'jnurmine/Zenburn'
 Plug 'acepukas/vim-zenburn'
 Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
-Plug 'jdkanani/vim-material-theme'
 
 " ==== NEOVIM
 Plug 'neomake/neomake'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
+
+"Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 filetype plugin indent on
@@ -128,10 +132,12 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " =  DEOPLETE
 " ===================================================
 
-let g:deoplete#enable_at_startup = 1
-call deoplete#custom#option('ignore_sources', {
-\ '_': ['tag']
-\})
+"let g:deoplete#enable_at_startup = 1
+"call deoplete#custom#option('ignore_sources', {
+"\ '_': ['tag']
+"\})
+"
+
 
 " ===================================================
 " =  NERDTREE
@@ -139,28 +145,6 @@ call deoplete#custom#option('ignore_sources', {
 
 map <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinSize = 45
-"let g:NERDTreeHighlightCursorline = 0
-"let g:NERDTreeLimitedSyntax = 1
-
-" NERDTress File highlighting
-"function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- "exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- "exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-"endfunction
-
-"call NERDTreeHighlightFile('ex', 'green', 'none', 'green', '#151515')
-"call NERDTreeHighlightFile('exs', 'green', 'none', 'green', '#151515')
-"call NERDTreeHighlightFile('rb', 'yellow', 'none', 'yellow', '#151515')
-"call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-"call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-"call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-"call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-"call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-"call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-"call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-"call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-"call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-"call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 
 " ===================================================
 " =  VIM RUBY
@@ -192,19 +176,17 @@ set background=dark
 set number
 
 set termguicolors
-colorscheme solarized8
-hi clear Search
+colorscheme solarized8_high
 hi clear Folded
 hi clear FoldColumn
-hi clear EndOfBuffer
+"hi clear EndOfBuffer
 hi clear Visual
 hi clear SignColumn
 hi clear LineNr
 hi clear VertSplit
-hi link Search Question
 hi link Folded SpecialKey
 hi link FoldColumn SpecialKey
-hi link EndOfBuffer SpecialKey
+"hi link EndOfBuffer SpecialKey
 hi link LineNr SpecialKey
 hi link VertSplit SpecialKey
 hi link Visual Pmenu
@@ -222,6 +204,7 @@ hi clear agsvFilePath
 hi link agsvFilePath Float
 hi clear agsvResultPattern
 hi link agsvResultPattern Underlined
+hi Search gui=bold guifg=#c4b341
 
 "==================================================
 "= CURSOR
@@ -230,17 +213,6 @@ hi link agsvResultPattern Underlined
 set nocursorline
 set nocursorcolumn
 
-"augroup CursorLineOnlyInActiveWindow
-  "autocmd!
-  "autocmd VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-  "autocmd WinLeave * setlocal nocursorline
-"augroup END
-
-"augroup ColorColumnOnlyInActiveWindow
-  "autocmd!
-  "autocmd VimEnter,WinEnter,BufWinEnter * setlocal colorcolumn=90
-  "autocmd WinLeave * setlocal colorcolumn=0
-"augroup END
 " ===================================================
 " =  FOLDING
 " ===================================================
@@ -324,7 +296,7 @@ nnoremap <silent> <C-L> :TmuxNavigateRight<cr>
 "set textwidth=90
 match DiffText '\%>100v.\+'
 
-map <LocalLeader>cc :set colorcolumn=90<CR>
+map <LocalLeader>cc :set colorcolumn=100<CR>
 map <LocalLeader>co :set colorcolumn=<CR>
 
 " ==== Easier non-interactive command insertion =====
@@ -335,6 +307,17 @@ nnoremap <tab> /
 
 nmap <left> :tabp<CR>
 nmap <right> :tabn<CR>
+nmap <up> :bn<CR>
+nmap <down> :bp<CR>
+nmap <leader>l :res 100<CR>
+
+" delete without yanking
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+
+" replace currently selected text with default register
+" without yanking it
+vnoremap <leader>p "_dP
 
 "===================================================
 "=  BUFFERS
@@ -355,17 +338,34 @@ let g:vimwiki_list = [wiki]
 " ======= vim-rspec ========
 "
 
-map <Leader>c :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+"map <Leader>c :call RunCurrentSpecFile()<CR>
+"map <Leader>s :call RunNearestSpec()<CR>
+"map <Leader>l :call RunLastSpec()<CR>
+"map <Leader>a :call RunAllSpecs()<CR>
+"nmap <Leader>c <Plug>vim-minitest#RunCurrentTestFile
+"nmap <Leader>s <Plug>vim-minitest#RunNearestTest
+"nmap <Leader>l <Plug>vim-minitest#RunLastTest
+"nmap <Leader>a <Plug>vim-minitest#RunAllTests
 map <LocalLeader>v :VroomRunTestFile<CR>
 map <LocalLeader>vv :VroomRunNearestTest<CR>
+nmap <Leader>c :call RubyTestFile()<CR>
+nmap <Leader>s :call RubyTestLine()<CR>
+nmap <Leader>a :call RubyTestAll()<CR>
 
-let g:rspec_command = 'call Send_to_Tmux("reset && spring rspec {spec}\n")'
+function! RubyTestFile()
+  call Send_to_Tmux("reset && rails test -d ".expand('%:~:.')."\n")
+endfunction
+function! RubyTestLine()
+  call Send_to_Tmux("reset && rails test -d ".expand('%:~:.').":".line('.')."\n")
+endfunction
+function! RubyTestAll()
+  call Send_to_Tmux("reset && rails test -d -f \n")
+endfunction
+
+let g:rspec_command = 'call Send_to_Tmux("reset && rspec {spec}\n")'
 let g:rspec_runner = "os_x_iterm2"
 
-map <Leader>rp :call Send_to_Tmux("spring rake parallel:spec\n")<CR>
+"let g:minitest_command = "!ruby -Itest {test}"
 
 " ===== clipboard options ==
 
@@ -391,7 +391,7 @@ if executable('ag')
 
   let g:ags_agcontext = 5
 
-  le g:ags_winheight = '20'
+  let g:ags_winplace='far-left'
 endif
 
 " bind F to grep word under cursor
@@ -445,7 +445,7 @@ let g:lightline = {
 		  \   'readonly': 'LightlineReadonly',
       \   'filetype': 'MyFiletype',
       \   'fileformat': 'MyFileformat',
-		  \   'gitbranch': 'LightlineFugitive'
+		  \   'gitbranch': 'FugitiveHead'
       \ }
       \ }
 
@@ -489,36 +489,39 @@ endfunction
 command! -nargs=1 -complete=custom,s:lightline_colorschemes LightlineColorscheme
         \ call s:set_lightline_colorscheme(<q-args>)
 
-  "==================================================
-  "= Move
-  "==================================================
-  "
-  let g:move_key_modifier = 'S'
+"==================================================
+"= Move
+"==================================================
+"
+let g:move_key_modifier = 'S'
 
-  "==================================================
-  "= VROOM
-  "==================================================
-  "
-  let g:vroom_use_bundle_exec=0
-  let g:vroom_use_terminal=1
-  let g:vroom_use_spring=1
+"==================================================
+"= VROOM
+"==================================================
+"
+let g:vroom_use_bundle_exec=0
+let g:vroom_use_terminal=1
+let g:vroom_use_spring=1
+let g:vroom_use_colors=1
+let g:vroom_test_unit_command='rails test'
+"let g:vroom_command_prefix='spring rails'
 
-  "==================================================
-  "= ALCHEMIST/ELIXIR
-  "==================================================
+"==================================================
+"= ALCHEMIST/ELIXIR
+"==================================================
 
-  let g:alchemist_iex_term_size = 150
-  let g:alchemist_iex_term_split = 'vsplit'
+let g:alchemist_iex_term_size = 150
+let g:alchemist_iex_term_split = 'vsplit'
 
-  function! ElixirTestFile()
-    call Send_to_Tmux("reset && mix test ".expand('%:p')." --trace\n")
-  endfunction
-  nnoremap <leader>e :call ElixirTestFile()<CR>
+function! ElixirTestFile()
+  call Send_to_Tmux("reset && mix test ".expand('%:p')." --trace\n")
+endfunction
+nnoremap <leader>e :call ElixirTestFile()<CR>
 
-  "=================================================a
-  "= LSP
-  "==================================================
-  "
+"=================================================a
+"= LSP
+"==================================================
+"
 "let g:LanguageClient_autoStop = 0
   "let g:LanguageClient_serverCommands = {
       "\ 'go': ['/Users/denesh/Documents/learning/go/bin/go-langserver']
@@ -584,6 +587,7 @@ nmap <F7> :TagbarToggle<CR>
 "==================================================
 "
 let g:rainbow_active = 1
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{','}']]
 
 "=================================================a
 " SHORTCUTS
@@ -603,22 +607,92 @@ let g:fzf_mru_relative = 1
 " CSCOPE
 "==================================================
 "
-set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
+nnoremap <leader>fa :cs find c <cword><CR>
+nnoremap <leader>l :call ToggleLocationList()<CR>
 
-nnoremap <Leader>fc :cscope find c <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
-nnoremap <Leader>fs :cscope find s <C-R>=expand("<cword>")<CR><CR>:botright cwindow<CR>
+  "=================================================a
+  " LANGCLIENT
+  "==================================================
+  "
+  "let g:LanguageClient_autoStop = 0
+  "let g:LanguageClient_serverCommands = {
+  "\ 'ruby': ['~/.asdf/shims/solargraph', 'stdio']
+      "\ }
 
-"=================================================a
-" LANGCLIENT
-"==================================================
+  "autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
+
+  "nnoremap <silent> <localleader>d :call LanguageClient_textDocument_hover()<CR>
+  let g:NERDTreeLimitedSyntax = 1
+
+  "=================================================a
+  " COC
+  "==================================================
+  "
+  inoremap <silent><expr> <TAB>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<TAB>" :
+        \ coc#refresh()
+  inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+  endfunction
+
+  let g:coc_global_extensions = ['coc-solargraph']
+
+  " GoTo code navigation.
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+
+  " Use K to show documentation in preview window.
+  nnoremap <leader>sd :call <SID>show_documentation()<CR>
+
+  function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+      execute 'h '.expand('<cword>')
+    else
+      call CocActionAsync('doHover')
+    endif
+  endfunction
+
+  " Highlight the symbol and its references when holding the cursor.
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+
+  " Symbol renaming.
+  nmap <leader>rn <Plug>(coc-rename)
+
+  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                                \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+  "==================================================
+  " MARKDOWN PREVIEW
+  "==================================================
+
+  let g:PluginDir = '/Users/denesh/.config/nvim/plugged/markdown-preview.vim/'
+
+  " SCRATCH BUFFERS
+
+  function! Scratch()
+      split
+      noswapfile hide enew
+      setlocal buftype=nofile
+      setlocal bufhidden=hide
+      "setlocal nobuflisted
+    "lcd ~
+    file scratch
+endfunction
+
+" ==== pRY
 "
-"let g:LanguageClient_autoStop = 0
-"let g:LanguageClient_serverCommands = {
-    "\ 'ruby': ['tcp://localhost:7658']
-    "\ }
+nnoremap <leader>p o<CR>require 'pry'<CR>binding.pry<CR><Esc>
 
-"autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
+" VIM TERMINAL
 
-"nnoremap <silent> <localleader>d :call LanguageClient_textDocument_hover()<CR>
-"
-let g:NERDTreeLimitedSyntax = 1
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <M-[> <Esc>
+  tnoremap <C-v><Esc> <Esc>
+endif
